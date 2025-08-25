@@ -1,0 +1,31 @@
+{
+  "name": "морское-портфолио",
+  "version": "1.0.0",
+  "description": "Веб-сайт портфолио с морской тематикой для демонстрации достижений и поиска талантов",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "портфолио",
+    "веб-сайт",
+    "html",
+    "css",
+    "javascript",
+    "морская-тематика",
+    "достижения",
+    "поиск-талантов"
+  ],
+  "author": "Разработчик",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/морское-портфолио.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/морское-портфолио/issues"
+  },
+  "homepage": "https://github.com/username/морское-портфолио#readme"
+}

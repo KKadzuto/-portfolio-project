@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Морское Портфолио - Поделитесь своими достижениями</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-anchor"></i>
+                <span>Морское Портфолио</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Главная</a>
+                <a href="#portfolio" class="nav-link">Портфолио</a>
+                <a href="#search" class="nav-link">Поиск</a>
+                <a href="#upload" class="nav-link">Загрузить</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Добро пожаловать в мир талантов</h1>
+            <p>Поделитесь своими достижениями, найдите единомышленников и создайте впечатляющее портфолио</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('upload')">
+                    <i class="fas fa-upload"></i>
+                    Загрузить достижение
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('search')">
+                    <i class="fas fa-search"></i>
+                    Найти таланты
+                </button>
+            </div>
+        </div>
+        <div class="hero-waves">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+        </div>
+    </section>
+
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <h2>Загрузите свое достижение</h2>
+            <div class="upload-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="title">Название проекта/достижения</label>
+                    <input type="text" id="title" placeholder="Опишите ваше достижение" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea id="description" placeholder="Расскажите подробнее о проекте, технологиях, результатах..." rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="skills">Навыки (через запятую)</label>
+                    <input type="text" id="skills" placeholder="JavaScript, HTML, CSS, React..." required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Изображение проекта</label>
+                    <input type="file" id="image" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="link">Ссылка на проект (если есть)</label>
+                    <input type="url" id="link" placeholder="https://example.com">
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="uploadAchievement()">
+                    <i class="fas fa-paper-plane"></i>
+                    Опубликовать
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="search" class="search-section">
+        <div class="container">
+            <h2>Найдите талантливых людей</h2>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Поиск по имени, навыкам или проектам...">
+                    <button onclick="searchPeople()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filter-tags">
+                    <span class="filter-tag" onclick="filterBySkill('JavaScript')">JavaScript</span>
+                    <span class="filter-tag" onclick="filterBySkill('HTML')">HTML</span>
+                    <span class="filter-tag" onclick="filterBySkill('CSS')">CSS</span>
+                    <span class="filter-tag" onclick="filterBySkill('React')">React</span>
+                    <span class="filter-tag" onclick="filterBySkill('Node.js')">Node.js</span>
+                </div>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <h2>Последние достижения</h2>
+            <div class="portfolio-controls">
+                <button class="btn btn-secondary" onclick="exportData()">
+                    <i class="fas fa-download"></i>
+                    Экспорт данных
+                </button>
+                <button class="btn btn-secondary" onclick="clearAllData()" style="background: #ef4444; color: white;">
+                    <i class="fas fa-trash"></i>
+                    Очистить все
+                </button>
+            </div>
+            <div id="portfolioGrid" class="portfolio-grid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Морское Портфолио</h3>
+                    <p>Платформа для демонстрации талантов и поиска единомышленников</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Быстрые ссылки</h4>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#portfolio">Портфолио</a></li>
+                        <li><a href="#search">Поиск</a></li>
+                        <li><a href="#upload">Загрузить</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Связаться с нами</h4>
+                    <div class="social-links">
+                        <a href="https://t.me/kkadzuto"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.linkedin.com/in/kadzuto/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/kkadzuto"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Морское Портфолио. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
