@@ -1,10 +1,13 @@
 let achievements = [];
 let filteredAchievements = [];
+let currentLanguage = 'en';
 
 document.addEventListener('DOMContentLoaded', function() {
     loadAchievements();
     setupEventListeners();
     displayPortfolio();
+    updateLanguage();
+    updatePlaceholders();
     
     window.debugPortfolio = function() {
         console.log('=== ДЕБАГ ПОРТФОЛИО ===');
@@ -54,13 +57,13 @@ function loadAchievements() {
             filteredAchievements = [...achievements];
             console.log('Достижения загружены:', achievements.length);
             if (achievements.length > 0) {
-                showNotification(`Загружено ${achievements.length} достижений`, 'success');
+                showNotification(currentLanguage === 'en' ? `Loaded ${achievements.length} achievements` : `Загружено ${achievements.length} достижений`, 'success');
             }
         } catch (error) {
             console.error('Ошибка при загрузке достижений:', error);
             achievements = [];
             filteredAchievements = [];
-            showNotification('Ошибка при загрузке данных', 'error');
+            showNotification(currentLanguage === 'en' ? 'Error loading data' : 'Ошибка при загрузке данных', 'error');
         }
     } else {
         console.log('Достижения не найдены в localStorage');
@@ -73,7 +76,7 @@ function saveAchievements() {
         console.log('Достижения сохранены:', achievements.length);
     } catch (error) {
         console.error('Ошибка при сохранении достижений:', error);
-        showNotification('Ошибка при сохранении данных', 'error');
+        showNotification(currentLanguage === 'en' ? 'Error saving data' : 'Ошибка при сохранении данных', 'error');
     }
 }
 
@@ -86,7 +89,7 @@ function uploadAchievement() {
     const link = document.getElementById('link').value.trim();
 
     if (!name || !title || !description || !skills) {
-        showNotification('Пожалуйста, заполните все обязательные поля', 'error');
+        showNotification(currentLanguage === 'en' ? 'Please fill in all required fields' : 'Пожалуйста, заполните все обязательные поля', 'error');
         return;
     }
 
@@ -110,7 +113,7 @@ function uploadAchievement() {
     
     clearForm();
     
-    showNotification('Достижение успешно загружено!', 'success');
+    showNotification(currentLanguage === 'en' ? 'Achievement uploaded successfully!' : 'Достижение успешно загружено!', 'success');
     
     scrollToSection('portfolio');
 }
@@ -130,7 +133,8 @@ function displayPortfolio() {
 
     const portfolioTitle = document.querySelector('#portfolio h2');
     if (portfolioTitle) {
-        portfolioTitle.innerHTML = `Последние достижения <span style="font-size: 1rem; color: #6b7280; font-weight: 400;">(${achievements.length})</span>`;
+        const titleText = currentLanguage === 'en' ? 'Latest Achievements' : 'Последние достижения';
+        portfolioTitle.innerHTML = `${titleText} <span style="font-size: 1rem; color: #6b7280; font-weight: 400;">(${achievements.length})</span>`;
     }
 
     portfolioGrid.innerHTML = '';
@@ -139,8 +143,8 @@ function displayPortfolio() {
         portfolioGrid.innerHTML = `
             <div class="empty-state">
                 <i class="fas fa-ship" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
-                <h3>Пока нет достижений</h3>
-                <p>Будьте первым, кто поделится своим проектом!</p>
+                <h3>${currentLanguage === 'en' ? 'No achievements yet' : 'Пока нет достижений'}</h3>
+                <p>${currentLanguage === 'en' ? 'Be the first to share your project!' : 'Будьте первым, кто поделится своим проектом!'}</p>
             </div>
         `;
         return;
@@ -166,13 +170,13 @@ function createPortfolioCard(achievement) {
         </div>
         <div class="card-content">
             <h3 class="card-title">${achievement.title}</h3>
-            <p class="card-author">Автор: ${achievement.name}</p>
+            <p class="card-author">${currentLanguage === 'en' ? 'Author' : 'Автор'}: ${achievement.name}</p>
             <p class="card-description">${achievement.description}</p>
             <div class="card-skills">
                 ${achievement.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
             </div>
             <div class="card-actions">
-                ${achievement.link ? `<a href="${achievement.link}" target="_blank" class="card-link">Посмотреть проект</a>` : ''}
+                ${achievement.link ? `<a href="${achievement.link}" target="_blank" class="card-link">${currentLanguage === 'en' ? 'View Project' : 'Посмотреть проект'}</a>` : ''}
                 <button class="btn btn-secondary" onclick="likeAchievement(${achievement.id})" style="margin-left: 10px;">
                     <i class="fas fa-heart"></i> ${achievement.likes}
                 </button>
@@ -212,8 +216,8 @@ function displaySearchResults() {
         searchResults.innerHTML = `
             <div class="empty-state" style="text-align: center; padding: 2rem;">
                 <i class="fas fa-search" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
-                <h3>Ничего не найдено</h3>
-                <p>Попробуйте изменить поисковый запрос</p>
+                <h3>${currentLanguage === 'en' ? 'Nothing found' : 'Ничего не найдено'}</h3>
+                <p>${currentLanguage === 'en' ? 'Try changing your search query' : 'Попробуйте изменить поисковый запрос'}</p>
             </div>
         `;
         return;
@@ -239,13 +243,13 @@ function createSearchResultCard(achievement) {
         </div>
         <div class="card-content">
             <h3 class="card-title">${achievement.title}</h3>
-            <p class="card-author">Автор: ${achievement.name}</p>
+            <p class="card-author">${currentLanguage === 'en' ? 'Author' : 'Автор'}: ${achievement.name}</p>
             <p class="card-description">${achievement.description}</p>
             <div class="card-skills">
                 ${achievement.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
             </div>
             <div class="card-actions">
-                ${achievement.link ? `<a href="${achievement.link}" target="_blank" class="card-link">Посмотреть проект</a>` : ''}
+                ${achievement.link ? `<a href="${achievement.link}" target="_blank" class="card-link">${currentLanguage === 'en' ? 'View Project' : 'Посмотреть проект'}</a>` : ''}
                 <button class="btn btn-secondary" onclick="likeAchievement(${achievement.id})" style="margin-left: 10px;">
                     <i class="fas fa-heart"></i> ${achievement.likes}
                 </button>
@@ -339,7 +343,7 @@ function clearAllData() {
         achievements = [];
         filteredAchievements = [];
         displayPortfolio();
-        showNotification('Все данные удалены', 'info');
+        showNotification(currentLanguage === 'en' ? 'All data cleared' : 'Все данные удалены', 'info');
     }
 }
 
@@ -352,7 +356,40 @@ function exportData() {
     link.download = 'portfolio-achievements.json';
     link.click();
     URL.revokeObjectURL(url);
-    showNotification('Данные экспортированы', 'success');
+    showNotification(currentLanguage === 'en' ? 'Data exported successfully' : 'Данные экспортированы', 'success');
+}
+
+function toggleLanguage() {
+    currentLanguage = currentLanguage === 'en' ? 'ru' : 'en';
+    updateLanguage();
+    updatePlaceholders();
+}
+
+function updateLanguage() {
+    const elements = document.querySelectorAll('[data-en][data-ru]');
+    elements.forEach(element => {
+        const text = currentLanguage === 'en' ? element.getAttribute('data-en') : element.getAttribute('data-ru');
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = text;
+        } else {
+            element.textContent = text;
+        }
+    });
+    
+    const langToggle = document.querySelector('.lang-toggle span');
+    if (langToggle) {
+        langToggle.textContent = currentLanguage === 'en' ? 'RU' : 'EN';
+    }
+}
+
+function updatePlaceholders() {
+    const inputs = document.querySelectorAll('input[data-en-placeholder][data-ru-placeholder]');
+    const textareas = document.querySelectorAll('textarea[data-en-placeholder][data-ru-placeholder]');
+    
+    [...inputs, ...textareas].forEach(element => {
+        const placeholder = currentLanguage === 'en' ? element.getAttribute('data-en-placeholder') : element.getAttribute('data-ru-placeholder');
+        element.placeholder = placeholder;
+    });
 }
 
 const style = document.createElement('style');
@@ -392,9 +429,9 @@ if (!saved) {
     const demoAchievements = [
         {
             id: 1,
-            name: "Алексей Петров",
-            title: "Интернет-магазин на React",
-            description: "Современный интернет-магазин с корзиной, фильтрами и системой оплаты. Использовал React, Node.js и MongoDB.",
+            name: "Alexey Petrov",
+            title: "React E-commerce Store",
+            description: "Modern e-commerce store with shopping cart, filters and payment system. Used React, Node.js and MongoDB.",
             skills: ["React", "Node.js", "MongoDB", "JavaScript"],
             image: null,
             link: "https://example.com",
@@ -403,9 +440,9 @@ if (!saved) {
         },
         {
             id: 2,
-            name: "Мария Сидорова",
-            title: "Портфолио-сайт",
-            description: "Красивый одностраничный сайт-портфолио с анимациями и адаптивным дизайном.",
+            name: "Maria Sidorova",
+            title: "Portfolio Website",
+            description: "Beautiful single-page portfolio website with animations and responsive design.",
             skills: ["HTML", "CSS", "JavaScript", "GSAP"],
             image: null,
             link: "",
@@ -414,9 +451,9 @@ if (!saved) {
         },
         {
             id: 3,
-            name: "Дмитрий Козлов",
-            title: "Чат-приложение",
-            description: "Real-time чат с возможностью отправки файлов и групповыми беседами.",
+            name: "Dmitry Kozlov",
+            title: "Chat Application",
+            description: "Real-time chat with file sharing and group conversations.",
             skills: ["Socket.io", "Express", "React", "MongoDB"],
             image: null,
             link: "https://chat-app.example.com",

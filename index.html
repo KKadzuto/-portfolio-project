@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Морское Портфолио - Поделитесь своими достижениями</title>
+    <title>Sea Portfolio - Share Your Achievements</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,13 +13,19 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-anchor"></i>
-                <span>Морское Портфолио</span>
+                <span data-en="Sea Portfolio" data-ru="Морское Портфолио">Sea Portfolio</span>
             </div>
             <div class="nav-menu">
-                <a href="#home" class="nav-link">Главная</a>
-                <a href="#portfolio" class="nav-link">Портфолио</a>
-                <a href="#search" class="nav-link">Поиск</a>
-                <a href="#upload" class="nav-link">Загрузить</a>
+                <a href="#home" class="nav-link" data-en="Home" data-ru="Главная">Home</a>
+                <a href="#portfolio" class="nav-link" data-en="Portfolio" data-ru="Портфолио">Portfolio</a>
+                <a href="#search" class="nav-link" data-en="Search" data-ru="Поиск">Search</a>
+                <a href="#upload" class="nav-link" data-en="Upload" data-ru="Загрузить">Upload</a>
+            </div>
+            <div class="nav-actions">
+                <button class="lang-toggle" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span data-en="RU" data-ru="EN">RU</span>
+                </button>
             </div>
             <div class="nav-toggle">
                 <span></span>
@@ -31,16 +37,16 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Добро пожаловать в мир талантов</h1>
-            <p>Поделитесь своими достижениями, найдите единомышленников и создайте впечатляющее портфолио</p>
+            <h1 data-en="Welcome to the World of Talents" data-ru="Добро пожаловать в мир талантов">Welcome to the World of Talents</h1>
+            <p data-en="Share your achievements, find like-minded people and create an impressive portfolio" data-ru="Поделитесь своими достижениями, найдите единомышленников и создайте впечатляющее портфолио">Share your achievements, find like-minded people and create an impressive portfolio</p>
             <div class="hero-buttons">
                 <button class="btn btn-primary" onclick="scrollToSection('upload')">
                     <i class="fas fa-upload"></i>
-                    Загрузить достижение
+                    <span data-en="Upload Achievement" data-ru="Загрузить достижение">Upload Achievement</span>
                 </button>
                 <button class="btn btn-secondary" onclick="scrollToSection('search')">
                     <i class="fas fa-search"></i>
-                    Найти таланты
+                    <span data-en="Find Talents" data-ru="Найти таланты">Find Talents</span>
                 </button>
             </div>
         </div>
@@ -53,35 +59,35 @@
 
     <section id="upload" class="upload-section">
         <div class="container">
-            <h2>Загрузите свое достижение</h2>
+            <h2 data-en="Upload Your Achievement" data-ru="Загрузите свое достижение">Upload Your Achievement</h2>
             <div class="upload-form">
                 <div class="form-group">
-                    <label for="name">Ваше имя</label>
-                    <input type="text" id="name" placeholder="Введите ваше имя" required>
+                    <label for="name" data-en="Your Name" data-ru="Ваше имя">Your Name</label>
+                    <input type="text" id="name" data-en-placeholder="Enter your name" data-ru-placeholder="Введите ваше имя" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
-                    <label for="title">Название проекта/достижения</label>
-                    <input type="text" id="title" placeholder="Опишите ваше достижение" required>
+                    <label for="title" data-en="Project/Achievement Title" data-ru="Название проекта/достижения">Project/Achievement Title</label>
+                    <input type="text" id="title" data-en-placeholder="Describe your achievement" data-ru-placeholder="Опишите ваше достижение" placeholder="Describe your achievement" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Описание</label>
-                    <textarea id="description" placeholder="Расскажите подробнее о проекте, технологиях, результатах..." rows="4" required></textarea>
+                    <label for="description" data-en="Description" data-ru="Описание">Description</label>
+                    <textarea id="description" data-en-placeholder="Tell us more about the project, technologies, results..." data-ru-placeholder="Расскажите подробнее о проекте, технологиях, результатах..." placeholder="Tell us more about the project, technologies, results..." rows="4" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="skills">Навыки (через запятую)</label>
-                    <input type="text" id="skills" placeholder="JavaScript, HTML, CSS, React..." required>
+                    <label for="skills" data-en="Skills (comma separated)" data-ru="Навыки (через запятую)">Skills (comma separated)</label>
+                    <input type="text" id="skills" data-en-placeholder="JavaScript, HTML, CSS, React..." data-ru-placeholder="JavaScript, HTML, CSS, React..." placeholder="JavaScript, HTML, CSS, React..." required>
                 </div>
                 <div class="form-group">
-                    <label for="image">Изображение проекта</label>
+                    <label for="image" data-en="Project Image" data-ru="Изображение проекта">Project Image</label>
                     <input type="file" id="image" accept="image/*">
                 </div>
                 <div class="form-group">
-                    <label for="link">Ссылка на проект (если есть)</label>
-                    <input type="url" id="link" placeholder="https://example.com">
+                    <label for="link" data-en="Project Link (if any)" data-ru="Ссылка на проект (если есть)">Project Link (if any)</label>
+                    <input type="url" id="link" data-en-placeholder="https://example.com" data-ru-placeholder="https://example.com" placeholder="https://example.com">
                 </div>
                 <button type="submit" class="btn btn-primary" onclick="uploadAchievement()">
                     <i class="fas fa-paper-plane"></i>
-                    Опубликовать
+                    <span data-en="Publish" data-ru="Опубликовать">Publish</span>
                 </button>
             </div>
         </div>
@@ -89,10 +95,10 @@
 
     <section id="search" class="search-section">
         <div class="container">
-            <h2>Найдите талантливых людей</h2>
+            <h2 data-en="Find Talented People" data-ru="Найдите талантливых людей">Find Talented People</h2>
             <div class="search-container">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Поиск по имени, навыкам или проектам...">
+                    <input type="text" id="searchInput" data-en-placeholder="Search by name, skills or projects..." data-ru-placeholder="Поиск по имени, навыкам или проектам..." placeholder="Search by name, skills or projects...">
                     <button onclick="searchPeople()">
                         <i class="fas fa-search"></i>
                     </button>
@@ -111,15 +117,15 @@
 
     <section id="portfolio" class="portfolio-section">
         <div class="container">
-            <h2>Последние достижения</h2>
+            <h2 data-en="Latest Achievements" data-ru="Последние достижения">Latest Achievements</h2>
             <div class="portfolio-controls">
                 <button class="btn btn-secondary" onclick="exportData()">
                     <i class="fas fa-download"></i>
-                    Экспорт данных
+                    <span data-en="Export Data" data-ru="Экспорт данных">Export Data</span>
                 </button>
                 <button class="btn btn-secondary" onclick="clearAllData()" style="background: #ef4444; color: white;">
                     <i class="fas fa-trash"></i>
-                    Очистить все
+                    <span data-en="Clear All" data-ru="Очистить все">Clear All</span>
                 </button>
             </div>
             <div id="portfolioGrid" class="portfolio-grid"></div>
@@ -130,20 +136,20 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Морское Портфолио</h3>
-                    <p>Платформа для демонстрации талантов и поиска единомышленников</p>
+                    <h3 data-en="Sea Portfolio" data-ru="Морское Портфолио">Sea Portfolio</h3>
+                    <p data-en="Platform for showcasing talents and finding like-minded people" data-ru="Платформа для демонстрации талантов и поиска единомышленников">Platform for showcasing talents and finding like-minded people</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Быстрые ссылки</h4>
+                    <h4 data-en="Quick Links" data-ru="Быстрые ссылки">Quick Links</h4>
                     <ul>
-                        <li><a href="#home">Главная</a></li>
-                        <li><a href="#portfolio">Портфолио</a></li>
-                        <li><a href="#search">Поиск</a></li>
-                        <li><a href="#upload">Загрузить</a></li>
+                        <li><a href="#home" data-en="Home" data-ru="Главная">Home</a></li>
+                        <li><a href="#portfolio" data-en="Portfolio" data-ru="Портфолио">Portfolio</a></li>
+                        <li><a href="#search" data-en="Search" data-ru="Поиск">Search</a></li>
+                        <li><a href="#upload" data-en="Upload" data-ru="Загрузить">Upload</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Связаться с нами</h4>
+                    <h4 data-en="Contact Us" data-ru="Связаться с нами">Contact Us</h4>
                     <div class="social-links">
                         <a href="https://t.me/kkadzuto"><i class="fab fa-telegram"></i></a>
                         <a href="https://www.linkedin.com/in/kadzuto/"><i class="fab fa-linkedin"></i></a>
@@ -152,7 +158,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Морское Портфолио. Все права защищены.</p>
+                <p data-en="&copy; 2025 Sea Portfolio. All rights reserved." data-ru="&copy; 2025 Морское Портфолио. Все права защищены.">&copy; 2025 Sea Portfolio. All rights reserved.</p>
             </div>
         </div>
     </footer>
